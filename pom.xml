@@ -29,9 +29,21 @@
     </build>
 
     <dependencies>
+        <!-- in-memory database. Works for everyone. If you want to use other database you can remove this dependency
+         and add any other but don't commit it -->
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.14.2.0</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cayenne</groupId>
+            <artifactId>cayenne-server</artifactId>
+            <version>4.0.RC1</version>
         </dependency>
     </dependencies>
 </project>
