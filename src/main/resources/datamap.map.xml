@@ -4,12 +4,45 @@
 	 xsi:schemaLocation="http://cayenne.apache.org/schema/9/modelMap http://cayenne.apache.org/schema/9/modelMap.xsd"
 	 project-version="9">
 	<property name="defaultPackage" value="ca.vastier.depense.generated.model"/>
-	<db-entity name="item">
+	<db-entity name="ARTICLE">
 		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="50"/>
 	</db-entity>
-	<obj-entity name="Item" className="ca.vastier.depense.generated.model.Item" dbEntityName="item">
-		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+	<db-entity name="EXPENSE">
+		<db-attribute name="article_id" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="date" type="DATE" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="purchase" type="VARCHAR" isMandatory="true" length="50"/>
+		<db-attribute name="receipt_id" type="INTEGER"/>
+	</db-entity>
+	<db-entity name="RECEIPT">
+		<db-attribute name="amount" type="DECIMAL"/>
+		<db-attribute name="date" type="DATE" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<obj-entity name="Article" className="ca.vastier.depense.generated.model.Article" dbEntityName="ARTICLE">
+		<obj-attribute name="id" type="int" db-attribute-path="id"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
 	</obj-entity>
+	<obj-entity name="Expense" className="ca.vastier.depense.generated.model.Expense" dbEntityName="EXPENSE">
+		<obj-attribute name="date" type="java.time.LocalDate" db-attribute-path="date"/>
+		<obj-attribute name="purchase" type="java.lang.String" db-attribute-path="purchase"/>
+	</obj-entity>
+	<obj-entity name="Receipt" className="ca.vastier.depense.generated.model.Receipt" dbEntityName="RECEIPT">
+		<obj-attribute name="amount" type="java.math.BigDecimal" db-attribute-path="amount"/>
+		<obj-attribute name="date" type="java.time.LocalDate" db-attribute-path="date"/>
+		<obj-attribute name="id" type="int" db-attribute-path="id"/>
+	</obj-entity>
+	<db-relationship name="article" source="EXPENSE" target="ARTICLE" toMany="false">
+		<db-attribute-pair source="article_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="receipt" source="EXPENSE" target="RECEIPT" toMany="false">
+		<db-attribute-pair source="receipt_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="expense" source="RECEIPT" target="EXPENSE" toMany="true">
+		<db-attribute-pair source="id" target="receipt_id"/>
+	</db-relationship>
+	<obj-relationship name="article" source="Expense" target="Article" deleteRule="Nullify" db-relationship-path="article"/>
+	<obj-relationship name="receipt" source="Expense" target="Receipt" deleteRule="Nullify" db-relationship-path="receipt"/>
+	<obj-relationship name="expense" source="Receipt" target="Expense" deleteRule="Deny" db-relationship-path="expense"/>
 </data-map>
