@@ -16,6 +16,7 @@ public class ArticleController
 	@RequestMapping(value = "article/{name}", method = RequestMethod.POST)
 	public ArticleWsDto createArticle(@PathVariable("name") final String name)
 	{
+		//TODO #10
 		// not a real implementation
 		final ObjectContext ctx = ServerRuntime.builder().addConfig("cayenne-project.xml").build().newContext();
 

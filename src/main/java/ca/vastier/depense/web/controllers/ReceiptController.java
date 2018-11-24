@@ -42,6 +42,7 @@ public class ReceiptController
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public ReceiptDto getReceiptById(@PathVariable("id") final String id)
 	{
+		//TODO #11
 		// not a real implementation
 		final ObjectContext context = ServerRuntime.builder().addConfig("cayenne-project.xml").build().newContext();
 		final Receipt receipt = context.selectFirst(ObjectSelect.query(Receipt.class).where(Receipt.ID.eq(Integer.parseInt(id))));
