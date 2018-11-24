@@ -2,15 +2,16 @@ package ca.vastier.depense.web.controllers;
 
 import java.util.ArrayList;
 
-import ca.vastier.depense.generated.model.Expense;
 import ca.vastier.depense.generated.model.Receipt;
 import ca.vastier.depense.services.ReceiptService;
 import ca.vastier.depense.web.dto.ExpenseDto;
 import ca.vastier.depense.web.dto.ReceiptDto;
+import ca.vastier.depense.web.wsdto.ReceiptWsDto;
 import lombok.Setter;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.query.ObjectSelect;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,16 +26,23 @@ public class ReceiptController
 	@Setter
 	@Autowired
 	private ReceiptService receiptService;
+	@Setter
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public int createReceipt(@RequestBody final ReceiptDto receipt)
+	public ReceiptWsDto createReceipt(@RequestBody final ReceiptWsDto receipt)
 	{
-		return receiptService.createReceipt(receipt);
+		final ReceiptDto receiptDto = modelMapper.map(receipt, ReceiptDto.class);
+		final ReceiptDto result = receiptService.createReceipt(receiptDto);
+
+		return modelMapper.map(result, ReceiptWsDto.class);
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public ReceiptDto getReceiptById(@PathVariable("id") final String id)
 	{
+		// not a real implementation
 		final ObjectContext context = ServerRuntime.builder().addConfig("cayenne-project.xml").build().newContext();
 		final Receipt receipt = context.selectFirst(ObjectSelect.query(Receipt.class).where(Receipt.ID.eq(Integer.parseInt(id))));
 

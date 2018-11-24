@@ -9,6 +9,7 @@
 		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="50"/>
 	</db-entity>
 	<db-entity name="EXPENSE">
+		<db-attribute name="amount" type="DECIMAL" isMandatory="true"/>
 		<db-attribute name="article_id" type="INTEGER" isMandatory="true"/>
 		<db-attribute name="date" type="DATE" isMandatory="true"/>
 		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
@@ -25,6 +26,7 @@
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
 	</obj-entity>
 	<obj-entity name="Expense" className="ca.vastier.depense.generated.model.Expense" dbEntityName="EXPENSE">
+		<obj-attribute name="amount" type="java.math.BigDecimal" db-attribute-path="amount"/>
 		<obj-attribute name="date" type="java.time.LocalDate" db-attribute-path="date"/>
 		<obj-attribute name="purchase" type="java.lang.String" db-attribute-path="purchase"/>
 	</obj-entity>

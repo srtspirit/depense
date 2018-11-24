@@ -1,4 +1,4 @@
-package ca.vastier.depense.web.dto;
+package ca.vastier.depense.web.wsdto;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,10 +15,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReceiptDto
+public class ReceiptWsDto
 {
 	private int id;
 
 	private LocalDate date;
-	private List<ExpenseDto> expenses;
+	private List<ExpenseWsDto> expenses;
 }

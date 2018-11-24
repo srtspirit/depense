@@ -1,7 +1,7 @@
 package ca.vastier.depense.web.controllers;
 
 import ca.vastier.depense.generated.model.Article;
-import ca.vastier.depense.web.dto.ArticleDto;
+import ca.vastier.depense.web.wsdto.ArticleWsDto;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArticleController
 {
 	@RequestMapping(value = "article/{name}", method = RequestMethod.POST)
-	public ArticleDto createArticle(@PathVariable("name") final String name)
+	public ArticleWsDto createArticle(@PathVariable("name") final String name)
 	{
+		// not a real implementation
 		final ObjectContext ctx = ServerRuntime.builder().addConfig("cayenne-project.xml").build().newContext();
 
 		final Article article = ctx.newObject(Article.class);
@@ -23,6 +24,6 @@ public class ArticleController
 
 		ctx.commitChanges();
 
-		return ArticleDto.builder().id(article.getId()).name(article.getName()).build();
+		return ArticleWsDto.builder().id(article.getId()).name(article.getName()).build();
 	}
 }

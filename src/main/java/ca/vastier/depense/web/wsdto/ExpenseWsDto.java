@@ -1,7 +1,7 @@
-package ca.vastier.depense.web.dto;
+package ca.vastier.depense.web.wsdto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,15 +10,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Builder
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReceiptDto
+public class ExpenseWsDto
 {
 	private int id;
-
 	private LocalDate date;
-	private List<ExpenseDto> expenses;
+	private String purchase;
+	private ArticleWsDto article;
+	private BigDecimal amount;
 }

@@ -1,5 +1,4 @@
-package ca.vastier.depense.web.dto;
-
+package ca.vastier.depense.web.wsdto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ArticleDto
+public class ArticleWsDto
 {
 	private int id;
 	private String name;

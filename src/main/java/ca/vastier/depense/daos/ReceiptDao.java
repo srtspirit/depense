@@ -5,5 +5,5 @@ import ca.vastier.depense.web.dto.ReceiptDto;
 
 public interface ReceiptDao
 {
-	int createReceipt(ReceiptDto receipt);
+	ReceiptDto createReceipt(ReceiptDto receipt);
 }
