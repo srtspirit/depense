@@ -25,6 +25,6 @@ public class ArticleController
 
 		ctx.commitChanges();
 
-		return ArticleWsDto.builder().id(article.getId()).name(article.getName()).build();
+		return ArticleWsDto.builder().hui(article.getId()).article_name(article.getName()).build();
 	}
 }

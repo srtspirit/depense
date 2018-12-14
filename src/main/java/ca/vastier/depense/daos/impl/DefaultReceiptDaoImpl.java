@@ -46,7 +46,7 @@ public class DefaultReceiptDaoImpl implements ReceiptDao
 		target.setDate(source.getDate());
 		target.setPurchase(source.getPurchase());
 		target.setAmount(source.getAmount());
-		target.setArticle(Cayenne.objectForPK(context, Article.class, source.getArticle().getId()));
+		target.setArticle(Cayenne.objectForPK(context, Article.class, source.getArticle().getHui()));
 	}
 
 	private static void convertReceiptToDto(final Receipt source, final ReceiptDto target)
@@ -77,8 +77,8 @@ public class DefaultReceiptDaoImpl implements ReceiptDao
 
 	private static void convertArticleToDto(final Article source, final ArticleDto target)
 	{
-		target.setId(source.getId());
-		target.setName(source.getName());
+		target.setHui(source.getId());
+		target.setArticle_name(source.getName());
 	}
 
 	@Override

@@ -14,6 +14,6 @@ import lombok.Setter;
 @Setter
 public class ArticleWsDto
 {
-	private int id;
-	private String name;
+	private int hui;
+	private String article_name;
 }
