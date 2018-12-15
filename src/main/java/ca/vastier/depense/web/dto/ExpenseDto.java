@@ -29,7 +29,7 @@ public class ExpenseDto
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pk_expense_seq_gen")
 	@SequenceGenerator(name = "pk_expense_seq_gen", sequenceName = "pk_expense")
-	private long id;
+	private int id;
 	private LocalDate date;
 	private String purchase;
 	@ManyToOne()

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ArticleDao extends CrudRepository<ArticleDto, Long>
+public interface ArticleDao extends CrudRepository<ArticleDto, Integer>
 {
 }

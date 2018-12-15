@@ -25,6 +25,6 @@ public class ArticleDto
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pk_article_seq_gen")
 	@SequenceGenerator(name = "pk_article_seq_gen", sequenceName = "pk_article")
-	private long id;
+	private int id;
 	private String name;
 }

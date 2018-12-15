@@ -31,7 +31,7 @@ public class ReceiptDto
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pk_receipt_seq_gen")
 	@SequenceGenerator(name = "pk_receipt_seq_gen", sequenceName = "pk_receipt")
-	private long id;
+	private int id;
 
 	private LocalDate date;
 	@OneToMany(cascade = CascadeType.ALL)

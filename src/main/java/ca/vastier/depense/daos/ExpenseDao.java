@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ExpenseDao extends CrudRepository<ExpenseDto, Long>
+public interface ExpenseDao extends CrudRepository<ExpenseDto, Integer>
 {
 }

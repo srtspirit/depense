@@ -40,7 +40,7 @@ public class ReceiptController
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public ReceiptWsDto getReceiptById(@PathVariable("id") final String id)
 	{
-		final ReceiptDto receiptDto = getReceiptService().findReceiptById(Long.valueOf(id));
+		final ReceiptDto receiptDto = getReceiptService().findReceiptById(Integer.valueOf(id));
 		return getModelMapper().map(receiptDto, ReceiptWsDto.class);
 	}
 }

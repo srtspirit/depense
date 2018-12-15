@@ -18,7 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ReceiptWsDto
 {
-	private long id;
+	private int id;
 
 	private LocalDate date;
 	private List<ExpenseWsDto> expenses;

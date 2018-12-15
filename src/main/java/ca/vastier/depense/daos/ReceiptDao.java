@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ReceiptDao extends CrudRepository<ReceiptDto, Long>
+public interface ReceiptDao extends CrudRepository<ReceiptDto, Integer>
 {
 }
