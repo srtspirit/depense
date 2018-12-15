@@ -30,6 +30,7 @@ public class ReceiptController
 	@Autowired
 	private ModelMapper modelMapper;
 
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ReceiptWsDto createReceipt(@RequestBody final ReceiptWsDto receipt)
 	{

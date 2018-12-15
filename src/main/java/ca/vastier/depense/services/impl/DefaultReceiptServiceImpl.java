@@ -18,6 +18,6 @@ public class DefaultReceiptServiceImpl implements ReceiptService
 	@Override
 	public ReceiptDto createReceipt(final ReceiptDto receipt)
 	{
-		return receiptDao.createReceipt(receipt);
+		return receiptDao.save(receipt);
 	}
 }

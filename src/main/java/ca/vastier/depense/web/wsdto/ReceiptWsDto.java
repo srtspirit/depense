@@ -1,5 +1,6 @@
 package ca.vastier.depense.web.wsdto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,8 +18,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ReceiptWsDto
 {
-	private int id;
+	private long id;
 
 	private LocalDate date;
 	private List<ExpenseWsDto> expenses;
+	private BigDecimal amount;
 }
