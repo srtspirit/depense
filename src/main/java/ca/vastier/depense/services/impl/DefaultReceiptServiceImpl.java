@@ -20,4 +20,11 @@ public class DefaultReceiptServiceImpl implements ReceiptService
 	{
 		return receiptDao.save(receipt);
 	}
+
+	@Override
+	public ReceiptDto findReceiptById(final long id)
+	{
+		//TODO #17 return 404
+		return receiptDao.findById(id).orElseThrow(() -> new IllegalStateException("Receipt not found"));
+	}
 }
