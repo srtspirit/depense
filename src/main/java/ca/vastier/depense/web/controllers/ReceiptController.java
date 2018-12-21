@@ -30,12 +30,12 @@ public class ReceiptController
 
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ReceiptWsDto createReceipt(@RequestBody final ReceiptWsDto receipt)
+	public int createReceipt(@RequestBody final ReceiptWsDto receipt)
 	{
 		final ReceiptDto receiptDto = getModelMapper().map(receipt, ReceiptDto.class);
 		final ReceiptDto result = getReceiptService().createReceipt(receiptDto);
 
-		return getModelMapper().map(result, ReceiptWsDto.class);
+		return result.getId();
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
