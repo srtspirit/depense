@@ -1,5 +1,6 @@
 package ca.vastier.depense.web.controllers;
 
+import ca.vastier.depense.exceptions.EntityNotFoundException;
 import ca.vastier.depense.services.ReceiptService;
 import ca.vastier.depense.web.dto.ReceiptDto;
 import ca.vastier.depense.web.wsdto.ReceiptWsDto;
@@ -40,7 +41,8 @@ public class ReceiptController
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public ReceiptWsDto getReceiptById(@PathVariable("id") final String id)
 	{
-		final ReceiptDto receiptDto = getReceiptService().findReceiptById(Integer.valueOf(id));
+		final ReceiptDto receiptDto = getReceiptService().findReceiptById(Integer.valueOf(id))
+				.orElseThrow(() -> new EntityNotFoundException("Receipt not found"));
 		return getModelMapper().map(receiptDto, ReceiptWsDto.class);
 	}
 }
