@@ -5,7 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import java.util.Collection;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,4 +32,10 @@ public class ArticleDto
 	@SequenceGenerator(name = "pk_article_seq_gen", sequenceName = "pk_article")
 	private int id;
 	private String name;
+	@ManyToOne
+	@JoinColumn(name = "parent_article_id")
+	private ArticleDto parentArticle;
+	@OneToMany(orphanRemoval = true)
+	@JoinColumn(name = "parent_article_id")
+	private Collection<ArticleDto> childArticles;
 }
