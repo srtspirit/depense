@@ -1,8 +1,11 @@
 package ca.vastier.depense.services.impl;
 
+import java.util.Optional;
+
 import ca.vastier.depense.daos.ReceiptDao;
 import ca.vastier.depense.services.ReceiptService;
 import ca.vastier.depense.web.dto.ReceiptDto;
+import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,19 +15,19 @@ import org.springframework.stereotype.Component;
 public class DefaultReceiptServiceImpl implements ReceiptService
 {
 	@Setter
+	@Getter
 	@Autowired
 	private ReceiptDao receiptDao;
 
 	@Override
 	public ReceiptDto createReceipt(final ReceiptDto receipt)
 	{
-		return receiptDao.save(receipt);
+		return getReceiptDao().save(receipt);
 	}
 
 	@Override
-	public ReceiptDto findReceiptById(final int id)
+	public Optional<ReceiptDto> findReceiptById(final int id)
 	{
-		//TODO #17 return 404
-		return receiptDao.findById(id).orElseThrow(() -> new IllegalStateException("Receipt not found"));
+		return getReceiptDao().findById(id);
 	}
 }
