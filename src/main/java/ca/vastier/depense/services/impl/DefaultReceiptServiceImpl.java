@@ -30,4 +30,21 @@ public class DefaultReceiptServiceImpl implements ReceiptService
 	{
 		return getReceiptDao().findById(id);
 	}
+
+	@Override
+	public void updateReceipt(final ReceiptDto receiptDto)
+	{
+		if (!getReceiptDao().existsById(receiptDto.getId()))
+		{
+			throw new IllegalStateException("receipt with id " + receiptDto.getId() + " doesn't exist");
+		}
+
+		getReceiptDao().save(receiptDto);
+	}
+
+	@Override
+	public void deleteReceiptById(final int id)
+	{
+		getReceiptDao().deleteById(id);
+	}
 }
