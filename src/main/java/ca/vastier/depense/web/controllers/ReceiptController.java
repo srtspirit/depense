@@ -45,4 +45,17 @@ public class ReceiptController
 				.orElseThrow(() -> new EntityNotFoundException("Receipt not found"));
 		return getModelMapper().map(receiptDto, ReceiptWsDto.class);
 	}
+
+	@RequestMapping(method = RequestMethod.PUT)
+	public void updateReceipt(@RequestBody final ReceiptWsDto receiptWsDto)
+	{
+		final ReceiptDto receiptDto = getModelMapper().map(receiptWsDto, ReceiptDto.class);
+		getReceiptService().updateReceipt(receiptDto);
+	}
+
+	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+	public void deleteReceiptById(@PathVariable("id") final String id)
+	{
+		getReceiptService().deleteReceiptById(Integer.valueOf(id));
+	}
 }

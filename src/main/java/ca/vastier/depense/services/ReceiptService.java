@@ -10,4 +10,8 @@ public interface ReceiptService
 	ReceiptDto createReceipt(ReceiptDto receipt);
 
 	Optional<ReceiptDto> findReceiptById(int id);
+
+	void updateReceipt(ReceiptDto articleDto);
+
+	void deleteReceiptById(int id);
 }
