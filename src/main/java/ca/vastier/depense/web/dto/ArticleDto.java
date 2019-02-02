@@ -26,7 +26,7 @@ public class ArticleDto extends AbstractEntity
 	@ManyToOne
 	@JoinColumn(name = "parent_article_id")
 	private ArticleDto parentArticle;
-	@OneToMany(orphanRemoval = true)
+	@OneToMany
 	@JoinColumn(name = "parent_article_id")
 	private Collection<ArticleDto> childArticles;
 
@@ -36,6 +36,9 @@ public class ArticleDto extends AbstractEntity
 		super(id);
 		this.name = name;
 		this.parentArticle = parentArticle;
-		this.childArticles = childArticles.stream().collect(toList());
+		if (childArticles != null)
+		{
+			this.childArticles = childArticles.stream().collect(toList());
+		}
 	}
 }
