@@ -2,7 +2,6 @@ package ca.vastier.depense;
 
 import ca.vastier.depense.web.dto.ArticleDto;
 import ca.vastier.depense.web.wsdto.ArticleWsDto;
-import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.context.annotation.Bean;
