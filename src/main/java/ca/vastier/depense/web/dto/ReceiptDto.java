@@ -2,12 +2,8 @@ package ca.vastier.depense.web.dto;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -26,13 +22,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "receipt")
-public class ReceiptDto
+public class ReceiptDto extends AbstractEntity
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pk_receipt_seq_gen")
-	@SequenceGenerator(name = "pk_receipt_seq_gen", sequenceName = "pk_receipt")
-	private int id;
-
 	private LocalDate date;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "receipt_id")
