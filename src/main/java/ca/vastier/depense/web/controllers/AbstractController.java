@@ -1,19 +1,16 @@
 package ca.vastier.depense.web.controllers;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import ca.vastier.depense.services.GenericEntityService;
 import ca.vastier.depense.web.dto.AbstractEntity;
-import lombok.Getter;
-import lombok.Setter;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
 abstract public class AbstractController
 {
-	@Setter
-	@Getter
-	@Autowired
 	private ModelMapper modelMapper;
 
 	protected <T extends AbstractEntity> T createEntity(final Object wsEntity, final Class<T> clazz)
@@ -42,5 +39,26 @@ abstract public class AbstractController
 		getEntityService().deleteEntityById(Integer.valueOf(id));
 	}
 
+	protected <T> Collection<T> findAllEntities(final Class<T> clazz)
+	{
+		final Collection<AbstractEntity> entities = getEntityService().findAllEntities();
+		return entities.stream().map(entity -> getModelMapper().map(entity, clazz)).collect(Collectors.toList());
+	}
+
 	abstract protected GenericEntityService getEntityService();
+
+	protected ModelMapper createMapper()
+	{
+		return new ModelMapper();
+	}
+
+	final protected ModelMapper getModelMapper()
+	{
+		if (modelMapper == null)
+		{
+			modelMapper = createMapper();
+		}
+
+		return modelMapper;
+	}
 }

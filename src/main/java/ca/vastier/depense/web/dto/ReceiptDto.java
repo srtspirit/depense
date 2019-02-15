@@ -25,7 +25,7 @@ import lombok.Setter;
 public class ReceiptDto extends AbstractEntity
 {
 	private LocalDate date;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = ExpenseDto.class)
 	@JoinColumn(name = "receipt_id")
 	private List<ExpenseDto> expenses;
 	private BigDecimal amount;
