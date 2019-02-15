@@ -52,7 +52,7 @@ public class ExpenseController extends AbstractController
 		deleteEntity(id);
 	}
 
-	@RequestMapping(value = "/get/all", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public Collection<ExpenseWsDto> getAllArticles()
 	{
 		return findAllEntities(ExpenseWsDto.class);

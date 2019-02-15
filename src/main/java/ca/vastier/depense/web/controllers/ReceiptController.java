@@ -55,7 +55,7 @@ public class ReceiptController extends AbstractController
 		deleteEntity(id);
 	}
 
-	@RequestMapping(value = "/get/all", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public Collection<ReceiptWsDto> getAllReceipts()
 	{
 		return findAllEntities(ReceiptWsDto.class);
