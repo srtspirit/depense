@@ -4,8 +4,10 @@ import java.util.Collection;
 
 import ca.vastier.depense.services.GenericEntityService;
 import ca.vastier.depense.services.ReceiptService;
+import ca.vastier.depense.web.dto.ArticleDto;
 import ca.vastier.depense.web.dto.ExpenseDto;
 import ca.vastier.depense.web.dto.ReceiptDto;
+import ca.vastier.depense.web.wsdto.ArticleWsDto;
 import ca.vastier.depense.web.wsdto.ExpenseWsDto;
 import ca.vastier.depense.web.wsdto.ReceiptWsDto;
 import lombok.Getter;
@@ -78,12 +80,39 @@ public class ReceiptController extends AbstractController
 			protected void configure()
 			{
 				skip().setReceipt(null);
-				skip().getArticle().setChildArticles(null);
-				skip().getArticle().setParentArticleId(null);
 			}
 		});
 
-		modelMapper.validate();
+		modelMapper.addMappings(new PropertyMap<ArticleDto, ArticleWsDto>()
+		{
+			@Override
+			protected void configure()
+			{
+				skip().setParentArticleId(null);
+				skip().setChildArticles(null);
+			}
+		});
+
+		modelMapper.addMappings(new PropertyMap<ExpenseWsDto, ExpenseDto>()
+		{
+			@Override
+			protected void configure()
+			{
+				skip().setReceipt(null);
+			}
+		});
+		
+		modelMapper.addMappings(new PropertyMap<ArticleWsDto, ArticleDto>()
+		{
+			@Override
+			protected void configure()
+			{
+				skip().setParentArticle(null);
+				skip().setName(null);
+				skip().setChildArticles(null);
+			}
+		});
+
 		return modelMapper;
 	}
 }

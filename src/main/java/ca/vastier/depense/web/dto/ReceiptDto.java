@@ -7,20 +7,20 @@ import javax.persistence.OneToMany;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import static java.util.stream.Collectors.toList;
 
-@Builder
+
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity(name = "receipt")
 public class ReceiptDto extends AbstractEntity
 {
@@ -29,4 +29,15 @@ public class ReceiptDto extends AbstractEntity
 	@JoinColumn(name = "receipt_id")
 	private List<ExpenseDto> expenses;
 	private BigDecimal amount;
+
+	@Builder
+	public ReceiptDto(final int id, final Collection<ExpenseDto> expenses, final BigDecimal amount)
+	{
+		super(id);
+		this.amount = amount;
+		if (expenses != null)
+		{
+			this.expenses = expenses.stream().collect(toList());
+		}
+	}
 }

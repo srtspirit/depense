@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
 
@@ -25,6 +26,7 @@ public class ReceiptWsDto
 	private int id;
 
 	private LocalDate date;
+	@JsonInclude(NON_EMPTY)
 	private List<ExpenseWsDto> expenses;
 	private BigDecimal amount;
 }

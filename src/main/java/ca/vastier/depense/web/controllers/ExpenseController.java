@@ -4,8 +4,12 @@ import java.util.Collection;
 
 import ca.vastier.depense.services.ExpenseService;
 import ca.vastier.depense.services.GenericEntityService;
+import ca.vastier.depense.web.dto.ArticleDto;
 import ca.vastier.depense.web.dto.ExpenseDto;
+import ca.vastier.depense.web.dto.ReceiptDto;
+import ca.vastier.depense.web.wsdto.ArticleWsDto;
 import ca.vastier.depense.web.wsdto.ExpenseWsDto;
+import ca.vastier.depense.web.wsdto.ReceiptWsDto;
 import lombok.Getter;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
@@ -70,19 +74,33 @@ public class ExpenseController extends AbstractController
 	{
 		final ModelMapper modelMapper = new ModelMapper();
 
-/*		modelMapper.createTypeMap(ExpenseWsDto.class, ExpenseDto.class) //
-				.addMapping(ExpenseWsDto::getArticle, ExpenseDto::setArticle) //
-				.addMappings(mapper -> mapper.skip((a, b) -> a.setReceipt(null))) //
-				.addMappings(mapper -> mapper.skip((dest, v) -> dest.getArticle().setParentArticle(null)));*/
-
-		modelMapper.addMappings(new PropertyMap<ExpenseDto, ExpenseWsDto>()
+		modelMapper.addMappings(new PropertyMap<ReceiptDto, ReceiptWsDto>()
 		{
 			@Override
 			protected void configure()
 			{
-				skip().getReceipt().setExpenses(null);
-				skip().getArticle().setParentArticleId(null);
-				skip().getArticle().setChildArticles(null);
+				skip().setExpenses(null);
+			}
+		});
+
+		modelMapper.addMappings(new PropertyMap<ArticleDto, ArticleWsDto>()
+		{
+			@Override
+			protected void configure()
+			{
+				skip().setParentArticleId(null);
+				skip().setChildArticles(null);
+			}
+		});
+
+		modelMapper.addMappings(new PropertyMap<ReceiptWsDto, ReceiptDto>()
+		{
+			@Override
+			protected void configure()
+			{
+				skip().setDate(null);
+				skip().setExpenses(null);
+				skip().setAmount(null);
 			}
 		});
 
