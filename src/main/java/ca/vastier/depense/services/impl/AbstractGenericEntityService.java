@@ -13,26 +13,28 @@ abstract public class AbstractGenericEntityService<T extends AbstractEntity> imp
 	private GenericDao<T> genericDao;
 
 	@Override
-	public T createEntity(final T entityDto)
+	public T createEntity(final T entity)
 	{
-		return getGenericDao().save(entityDto);
+		return getGenericDao().save(entity);
 	}
 
 	@Override
 	public T findEntityById(final int id)
 	{
-		return getGenericDao().findById(id).orElseThrow(() -> new EntityNotFoundException("Entity with id " + id + " not found"));
+		return getGenericDao().findById(id).orElseThrow(
+				() -> new EntityNotFoundException(getClass().getSimpleName() + ": entity " + " with id " + id + " not found"));
 	}
 
 	@Override
-	public void updateEntity(final T entityDto)
+	public void updateEntity(final T entity)
 	{
-		if (!getGenericDao().existsById(entityDto.getId()))
+		if (!getGenericDao().existsById(entity.getId()))
 		{
-			throw new IllegalStateException("Entity " + entityDto.getClass() + " with id " + entityDto.getId() + " doesn't exist");
+			throw new IllegalStateException(
+					getClass().getSimpleName() + " :entity " + " with id " + entity.getId() + " doesn't exist");
 		}
 
-		getGenericDao().save(entityDto);
+		getGenericDao().save(entity);
 	}
 
 	@Override

@@ -48,7 +48,6 @@ public class ExpenseController extends AbstractController
 		deleteEntity(id);
 	}
 
-
 	@Override
 	protected GenericEntityService getEntityService()
 	{
