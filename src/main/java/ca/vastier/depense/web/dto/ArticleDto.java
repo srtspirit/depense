@@ -2,40 +2,43 @@ package ca.vastier.depense.web.dto;
 
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 
 import java.util.Collection;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import static java.util.stream.Collectors.toList;
 
-@Builder
+
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @Entity(name = "article")
-public class ArticleDto
+public class ArticleDto extends AbstractEntity
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pk_article_seq_gen")
-	@SequenceGenerator(name = "pk_article_seq_gen", sequenceName = "pk_article")
-	private int id;
 	private String name;
 	@ManyToOne
 	@JoinColumn(name = "parent_article_id")
 	private ArticleDto parentArticle;
-	@OneToMany(orphanRemoval = true)
+	@OneToMany
 	@JoinColumn(name = "parent_article_id")
 	private Collection<ArticleDto> childArticles;
+
+	@Builder
+	public ArticleDto(final int id, final String name, final ArticleDto parentArticle, final Collection<ArticleDto> childArticles)
+	{
+		super(id);
+		this.name = name;
+		this.parentArticle = parentArticle;
+		if (childArticles != null)
+		{
+			this.childArticles = childArticles.stream().collect(toList());
+		}
+	}
 }

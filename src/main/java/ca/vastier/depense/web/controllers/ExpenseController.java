@@ -1,9 +1,9 @@
 package ca.vastier.depense.web.controllers;
 
+import ca.vastier.depense.services.ExpenseService;
 import ca.vastier.depense.services.GenericEntityService;
-import ca.vastier.depense.services.ReceiptService;
-import ca.vastier.depense.web.dto.ReceiptDto;
-import ca.vastier.depense.web.wsdto.ReceiptWsDto;
+import ca.vastier.depense.web.dto.ExpenseDto;
+import ca.vastier.depense.web.wsdto.ExpenseWsDto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,43 +15,42 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("receipt")
-public class ReceiptController extends AbstractController
+@RequestMapping("expense")
+public class ExpenseController extends AbstractController
 {
-	@Setter
 	@Getter
+	@Setter
 	@Autowired
-	private ReceiptService receiptService;
-
+	private ExpenseService expenseService;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public int createReceipt(@RequestBody final ReceiptWsDto receipt)
+	public int createExpense(@RequestBody final ExpenseWsDto expenseWsDto)
 	{
-		return createEntity(receipt, ReceiptDto.class).getId();
+		return createEntity(expenseWsDto, ExpenseDto.class).getId();
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
-	public ReceiptWsDto getReceiptById(@PathVariable("id") final String id)
+	public ExpenseWsDto getExpenseById(@PathVariable("id") final String id)
 	{
 
-		return getEntityById(id, ReceiptWsDto.class);
+		return getEntityById(id, ExpenseWsDto.class);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public void updateReceipt(@RequestBody final ReceiptWsDto receiptWsDto)
+	public void updateExpense(@RequestBody final ExpenseWsDto expenseWsDto)
 	{
-		updateEntity(receiptWsDto, ReceiptDto.class);
+		updateEntity(expenseWsDto, ExpenseDto.class);
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-	public void deleteReceiptById(@PathVariable("id") final String id)
+	public void deleteExpenseById(@PathVariable("id") final String id)
 	{
 		deleteEntity(id);
 	}
 
 	@Override
-	protected GenericEntityService<ReceiptDto> getEntityService()
+	protected GenericEntityService getEntityService()
 	{
-		return receiptService;
+		return expenseService;
 	}
 }
