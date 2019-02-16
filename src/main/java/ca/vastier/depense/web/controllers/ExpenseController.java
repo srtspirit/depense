@@ -55,13 +55,12 @@ public class ExpenseController extends AbstractController
 	{
 		deleteEntity(id);
 	}
-
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<ExpenseWsDto> getAllArticles()
 	{
 		return findAllEntities(ExpenseWsDto.class);
 	}
-
 
 	@Override
 	protected GenericEntityService getEntityService()
