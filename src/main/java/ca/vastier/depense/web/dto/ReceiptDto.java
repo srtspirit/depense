@@ -25,7 +25,7 @@ import static java.util.stream.Collectors.toList;
 public class ReceiptDto extends AbstractEntity
 {
 	private LocalDate date;
-	@OneToMany(cascade = CascadeType.ALL, targetEntity = ExpenseDto.class)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "receipt_id")
 	private List<ExpenseDto> expenses;
 	private BigDecimal amount;

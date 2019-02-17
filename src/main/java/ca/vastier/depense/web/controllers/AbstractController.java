@@ -1,12 +1,13 @@
 package ca.vastier.depense.web.controllers;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 import ca.vastier.depense.services.GenericEntityService;
 import ca.vastier.depense.web.dto.AbstractEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import static java.util.stream.Collectors.toList;
 
 
 abstract public class AbstractController
@@ -42,7 +43,7 @@ abstract public class AbstractController
 	protected <T> Collection<T> findAllEntities(final Class<T> clazz)
 	{
 		final Collection<AbstractEntity> entities = getEntityService().findAllEntities();
-		return entities.stream().map(entity -> getModelMapper().map(entity, clazz)).collect(Collectors.toList());
+		return entities.stream().map(entity -> getModelMapper().map(entity, clazz)).collect(toList());
 	}
 
 	abstract protected GenericEntityService getEntityService();
