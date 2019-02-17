@@ -1,11 +1,19 @@
 package ca.vastier.depense.web.controllers;
 
+import java.util.Collection;
+
 import ca.vastier.depense.services.GenericEntityService;
 import ca.vastier.depense.services.ReceiptService;
+import ca.vastier.depense.web.dto.ArticleDto;
+import ca.vastier.depense.web.dto.ExpenseDto;
 import ca.vastier.depense.web.dto.ReceiptDto;
+import ca.vastier.depense.web.wsdto.ArticleWsDto;
+import ca.vastier.depense.web.wsdto.ExpenseWsDto;
 import ca.vastier.depense.web.wsdto.ReceiptWsDto;
 import lombok.Getter;
 import lombok.Setter;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,9 +57,62 @@ public class ReceiptController extends AbstractController
 		deleteEntity(id);
 	}
 
+	@RequestMapping(method = RequestMethod.GET)
+	public Collection<ReceiptWsDto> getAllReceipts()
+	{
+		return findAllEntities(ReceiptWsDto.class);
+	}
+
 	@Override
 	protected GenericEntityService<ReceiptDto> getEntityService()
 	{
 		return receiptService;
+	}
+
+	@Override
+	protected ModelMapper createMapper()
+	{
+		final ModelMapper modelMapper = new ModelMapper();
+
+		modelMapper.addMappings(new PropertyMap<ExpenseDto, ExpenseWsDto>()
+		{
+			@Override
+			protected void configure()
+			{
+				skip().setReceipt(null);
+			}
+		});
+
+		modelMapper.addMappings(new PropertyMap<ArticleDto, ArticleWsDto>()
+		{
+			@Override
+			protected void configure()
+			{
+				skip().setParentArticleId(null);
+				skip().setChildArticles(null);
+			}
+		});
+
+		modelMapper.addMappings(new PropertyMap<ExpenseWsDto, ExpenseDto>()
+		{
+			@Override
+			protected void configure()
+			{
+				skip().setReceipt(null);
+			}
+		});
+		
+		modelMapper.addMappings(new PropertyMap<ArticleWsDto, ArticleDto>()
+		{
+			@Override
+			protected void configure()
+			{
+				skip().setParentArticle(null);
+				skip().setName(null);
+				skip().setChildArticles(null);
+			}
+		});
+
+		return modelMapper;
 	}
 }

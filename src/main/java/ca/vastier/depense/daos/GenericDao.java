@@ -17,4 +17,6 @@ public interface GenericDao<T extends AbstractEntity> extends CrudRepository<T, 
 	boolean existsById(Integer integer);
 
 	void deleteById(Integer integer);
+
+	Iterable<T> findAll();
 }

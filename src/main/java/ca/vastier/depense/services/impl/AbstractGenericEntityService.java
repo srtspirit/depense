@@ -1,5 +1,9 @@
 package ca.vastier.depense.services.impl;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import ca.vastier.depense.daos.GenericDao;
 import ca.vastier.depense.exceptions.EntityNotFoundException;
 import ca.vastier.depense.services.GenericEntityService;
@@ -41,6 +45,15 @@ abstract public class AbstractGenericEntityService<T extends AbstractEntity> imp
 	public void deleteEntityById(final int id)
 	{
 		getGenericDao().deleteById(id);
+	}
+
+	@Override
+	public Collection<T> findAllEntities()
+	{
+		final List<T> result = new ArrayList<>();
+		getGenericDao().findAll().forEach(result::add);
+
+		return result;
 	}
 
 	protected GenericDao<T> getGenericDao()

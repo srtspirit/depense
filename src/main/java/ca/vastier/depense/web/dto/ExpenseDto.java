@@ -24,8 +24,11 @@ public class ExpenseDto extends AbstractEntity
 {
 	private LocalDate date;
 	private String purchase;
-	@ManyToOne()
+	@ManyToOne(targetEntity = ArticleDto.class)
 	@JoinColumn(name = "article_id")
 	private ArticleDto article;
 	private BigDecimal amount;
+	@ManyToOne(targetEntity = ReceiptDto.class)
+	@JoinColumn(name = "receipt_id")
+	private ReceiptDto receipt;
 }

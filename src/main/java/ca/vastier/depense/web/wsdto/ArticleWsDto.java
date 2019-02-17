@@ -1,7 +1,11 @@
 package ca.vastier.depense.web.wsdto;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,6 +22,8 @@ public class ArticleWsDto
 {
 	private int id;
 	private String name;
+	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private Integer parentArticleId;
+	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	private Collection<ArticleWsDto> childArticles;
 }
