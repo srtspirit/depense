@@ -1,0 +1,5 @@
+<div *ngIf="expenses.length > 0">
+  <div *ngFor="let expense of expenses">
+    <app-expense-item [expense]="expense"></app-expense-item>
+  </div>
+</div>
