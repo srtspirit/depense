@@ -32,9 +32,10 @@ public class ExpenseController extends AbstractController
 	private ExpenseService expenseService;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public int createExpense(@RequestBody final ExpenseWsDto expenseWsDto)
+	public ExpenseWsDto createExpense(@RequestBody final ExpenseWsDto expenseWsDto)
 	{
-		return createEntity(expenseWsDto, ExpenseDto.class).getId();
+		final ExpenseDto expenseDto = createEntity(expenseWsDto, ExpenseDto.class);
+		return getModelMapper().map(expenseDto, ExpenseWsDto.class);
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)

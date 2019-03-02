@@ -28,15 +28,16 @@ public class ArticleController extends AbstractController
 	private ArticleService articleService;
 
 	@RequestMapping(value = "{name}", method = RequestMethod.POST)
-	public int createArticle(@PathVariable("name") final String name)
+	public ArticleWsDto createArticle(@PathVariable("name") final String name)
 	{
 		return createArticle(ArticleWsDto.builder().name(name).build());
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public int createArticle(@RequestBody final ArticleWsDto articleWsDto)
+	public ArticleWsDto createArticle(@RequestBody final ArticleWsDto articleWsDto)
 	{
-		return createEntity(articleWsDto, ArticleDto.class).getId();
+		final  ArticleDto articleDto = createEntity(articleWsDto, ArticleDto.class);
+		return getModelMapper().map(articleDto, ArticleWsDto.class);
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)

@@ -33,9 +33,10 @@ public class ReceiptController extends AbstractController
 
 
 	@RequestMapping(method = RequestMethod.POST)
-	public int createReceipt(@RequestBody final ReceiptWsDto receipt)
+	public ReceiptWsDto createReceipt(@RequestBody final ReceiptWsDto receipt)
 	{
-		return createEntity(receipt, ReceiptDto.class).getId();
+		final ReceiptDto receiptDto = createEntity(receipt, ReceiptDto.class);
+		return getModelMapper().map(receiptDto, ReceiptWsDto.class);
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
