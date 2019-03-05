@@ -13,6 +13,8 @@ import { CreateExpenseComponent } from './components/create-expense/create-expen
 import { ExpenseFacade } from './facades/expense.facade';
 import { ExpenseItemComponent } from './components/expense-item/expense-item.component';
 import { ExpenseListComponent } from './components/expense-list/expense-list.component';
+import { ArticleListComponent } from './components/article-list/article-list.component';
+import { ArticleFacade } from './facades/article.facade';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { ExpenseListComponent } from './components/expense-list/expense-list.com
     CreateReceiptComponent,
     CreateExpenseComponent,
     ExpenseItemComponent,
-    ExpenseListComponent
+    ExpenseListComponent,
+    ArticleListComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,7 @@ import { ExpenseListComponent } from './components/expense-list/expense-list.com
     FormsModule,
     HttpClientModule
   ],
-  providers: [ReceiptFacade, ReceiptService, ExpenseFacade],
+  providers: [ReceiptFacade, ReceiptService, ExpenseFacade, ArticleFacade],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

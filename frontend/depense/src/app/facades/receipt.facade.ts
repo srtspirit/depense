@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ReceiptFacade {
-  constructor(private receiptService: ReceiptService) {}
+  constructor(private receiptService: ReceiptService<Receipt>) {}
 
   createReceipt(receipt: Receipt) {
     return this.receiptService.createReceipt(receipt);

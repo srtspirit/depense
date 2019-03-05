@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Expense } from '../../models';
+import { Expense, Article } from '../../models';
 import { ControlValueAccessor } from '@angular/forms';
 
 @Component({
@@ -13,5 +13,10 @@ export class ExpenseItemComponent {
 
   changeExpenseDate(dateWrapper: any): void {
     this.expense.date = dateWrapper.date;
+  }
+
+  changeArticle(article: Article): void {
+    console.log(article);
+    this.expense.article = article;
   }
 }

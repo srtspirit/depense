@@ -20,13 +20,9 @@
   <div class="fd-col--3">
     <input type="text" id="amount" [(ngModel)]="expense.amount" name="amount" />
   </div>
-  <div class="fd-col--3" *ngIf="expense.article">
-    <input
-      type="text"
-      id="article"
-      [(ngModel)]="expense.article.id"
-      name="article"
-      disabled="true"
-    />
+  <div class="fd-col--3">
+    <app-article-list
+      (selectedArticleChange)="changeArticle($event)"
+    ></app-article-list>
   </div>
 </div>

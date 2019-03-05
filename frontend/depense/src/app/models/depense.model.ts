@@ -23,8 +23,4 @@ export class Article implements Entity {
   name?: string;
   parentArticleId?: string;
   childArticles?: Article[];
-
-  constructor() {
-    this.id = '620';
-  }
 }
