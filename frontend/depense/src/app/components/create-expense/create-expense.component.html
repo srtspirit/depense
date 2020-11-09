@@ -1,0 +1,52 @@
+<form fd-form-group>
+  <div fd-form-set>
+    <div fd-form-item>
+      <fd-form-label forValue="amount">Amount </fd-form-label>
+
+      <input
+        type="text"
+        id="amount"
+        [(ngModel)]="newExpense.amount"
+        name="amount"
+      />
+    </div>
+    <div fd-form-item>
+      <fd-form-label forValue="date">date </fd-form-label>
+
+      <fd-date-picker
+        name="date"
+        id="date"
+        [type]="'single'"
+        [compact]="'true'"
+        [(ngModel)]="newExpense"
+      ></fd-date-picker>
+    </div>
+
+    <div fd-form-item>
+      <fd-form-label forValue="purchase">Purchase </fd-form-label>
+
+      <input
+        type="text"
+        id="purchase"
+        [(ngModel)]="newExpense.purchase"
+        name="purchase"
+      />
+    </div>
+
+    <div fd-form-item>
+      <fd-form-label forValue="article">Article </fd-form-label>
+
+      <input
+        type="text"
+        id="article"
+        [(ngModel)]="newExpense.article.id"
+        name="article"
+        disabled="true"
+      />
+    </div>
+
+    <div fd-form-item>
+      <button fd-button fdType="main" (click)="createExpense()">Create</button>
+    </div>
+  </div>
+</form>

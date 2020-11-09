@@ -1,0 +1,28 @@
+<div class="fd-container fd-container--fluid">
+  <div class="fd-col--3">
+    <fd-date-picker
+      name="date"
+      id="date"
+      [type]="'single'"
+      [compact]="'true'"
+      (selectedDayChange)="changeExpenseDate($event)"
+      [(ngModel)]="initialCalendarDate"
+    ></fd-date-picker>
+  </div>
+  <div class="fd-col--3">
+    <input
+      type="text"
+      id="purchase"
+      [(ngModel)]="expense.purchase"
+      name="purchase"
+    />
+  </div>
+  <div class="fd-col--3">
+    <input type="text" id="amount" [(ngModel)]="expense.amount" name="amount" />
+  </div>
+  <div class="fd-col--3">
+    <app-article-list
+      (selectedArticleChange)="changeArticle($event)"
+    ></app-article-list>
+  </div>
+</div>

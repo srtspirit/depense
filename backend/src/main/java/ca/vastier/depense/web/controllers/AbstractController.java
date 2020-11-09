@@ -16,7 +16,7 @@ abstract public class AbstractController
 
 	protected <T extends AbstractEntity> T createEntity(final Object wsEntity, final Class<T> clazz)
 	{
-		final AbstractEntity abstractEntity = getModelMapper().map(wsEntity, clazz);
+		final T abstractEntity = getModelMapper().map(wsEntity, clazz);
 		final AbstractEntity result = getEntityService().createEntity(abstractEntity);
 
 		return (T) result;
@@ -29,10 +29,12 @@ abstract public class AbstractController
 		return getModelMapper().map(entity, clazz);
 	}
 
-	protected <T extends AbstractEntity> void updateEntity(final Object wsEntity, Class<T> clazz)
+	protected <T extends AbstractEntity> T updateEntity(final Object wsEntity, Class<T> clazz)
 	{
-		final AbstractEntity abstractEntity = getModelMapper().map(wsEntity, clazz);
+		final T abstractEntity = getModelMapper().map(wsEntity, clazz);
 		getEntityService().updateEntity(abstractEntity);
+
+		return abstractEntity;
 	}
 
 	protected void deleteEntity(@PathVariable("id") final String id)

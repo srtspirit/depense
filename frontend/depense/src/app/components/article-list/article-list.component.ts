@@ -14,7 +14,6 @@ export class ArticleListComponent implements OnInit {
 
   constructor(private articleFacade: ArticleFacade) {}
   ngOnInit(): void {
-    console.log('init article list component')
     this.articleFacade.getArticles().subscribe(res => {
       this.dropdownValues = res.map(art => {
         return {
