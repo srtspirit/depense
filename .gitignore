@@ -3,3 +3,6 @@ src/main/java/ca/vastier/depense/generated
 **/node_modules/*
 package-lock.json
 
+node_modules
+dist
+.idea

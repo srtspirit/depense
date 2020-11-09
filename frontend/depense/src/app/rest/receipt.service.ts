@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { Receipt, Entity } from '../models';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment} from '../../environments/environment';
 
 const URL = 'http://localhost:8080/';
 
@@ -13,6 +14,6 @@ export class ReceiptService<T extends Entity> {
   }
 
   getAll(name: string): Observable<T[]> {
-    return this.http.get<T[]>(URL + name);
+    return this.http.get<T[]>(environment.url + name);
   }
 }
