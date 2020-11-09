@@ -1,38 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CreateReceiptComponent } from './components/create-receipt/create-receipt.component';
-import { FundamentalNgxModule } from 'fundamental-ngx';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ReceiptFacade } from './facades/receipt.facade';
-import { ReceiptService } from './rest/receipt.service';
-import { HttpClientModule } from '@angular/common/http';
-import { CreateExpenseComponent } from './components/create-expense/create-expense.component';
-import { ExpenseFacade } from './facades/expense.facade';
-import { ExpenseItemComponent } from './components/expense-item/expense-item.component';
-import { ExpenseListComponent } from './components/expense-list/expense-list.component';
-import { ArticleListComponent } from './components/article-list/article-list.component';
-import { ArticleFacade } from './facades/article.facade';
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
+import {DepenseModule} from '../depense_module/depense.module';
+import {AppRoutingModule} from "./app-routing.module";
+import {TestModule} from "../test-module/test.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CreateReceiptComponent,
-    CreateExpenseComponent,
-    ExpenseItemComponent,
-    ExpenseListComponent,
-    ArticleListComponent
-  ],
+  declarations: [],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    FundamentalNgxModule,
-    FormsModule,
-    HttpClientModule
+    DepenseModule,
+    TestModule
   ],
-  providers: [ReceiptFacade, ReceiptService, ExpenseFacade, ArticleFacade],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

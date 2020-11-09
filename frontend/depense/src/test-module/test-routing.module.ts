@@ -3,16 +3,20 @@ import {CreateReceiptComponent} from "../depense_module/components/create-receip
 import {CreateExpenseComponent} from "../depense_module/components/create-expense/create-expense.component";
 import {ArticleListComponent} from "../depense_module/components/article-list/article-list.component";
 import {NgModule} from "@angular/core";
-import {DepenseComponent} from "../depense_module/components/depense-component/depense.component";
-import {TestComponent} from "../test-module/test.component";
 
 const routes: Routes = [
-  { path: 'depense', component: DepenseComponent },
-  { path: 'test', component: TestComponent}
+];
+
+const children: Routes = [
+  {
+    path: 'depense',
+    children: routes
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(children)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class TestRoutingModule {
+}
