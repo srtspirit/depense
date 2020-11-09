@@ -1,3 +1,6 @@
 target
 src/main/java/ca/vastier/depense/generated
 
+node_modules
+dist
+.idea

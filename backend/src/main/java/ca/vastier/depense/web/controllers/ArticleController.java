@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +59,7 @@ public class ArticleController extends AbstractController
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
 	public Collection<ArticleWsDto> getAllArticles()
 	{
 		return findAllEntities(ArticleWsDto.class);
