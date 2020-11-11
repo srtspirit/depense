@@ -6,7 +6,6 @@ import org.springframework.context.annotation.PropertySource;
 
 
 @SpringBootApplication
-@PropertySource("project.properties")
 public class Application
 {
 	public static void main(String[] args)

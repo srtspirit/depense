@@ -1,10 +1,8 @@
 package ca.vastier.depense.web.wsdto;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.Collection;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
