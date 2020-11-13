@@ -2,6 +2,7 @@ package ca.vastier.depense.web.controllers;
 
 import java.util.Collection;
 
+import ca.vastier.depense.web.aop.Secured;
 import ca.vastier.depense.services.ArticleService;
 import ca.vastier.depense.services.GenericEntityService;
 import ca.vastier.depense.web.dto.ArticleDto;
@@ -61,6 +62,7 @@ public class ArticleController extends AbstractController
 
 	@RequestMapping(method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
+	@Secured(allowedRoles = {"admins", "managers", "developer"})
 	public Collection<ArticleWsDto> getAllArticles()
 	{
 		return findAllEntities(ArticleWsDto.class);
