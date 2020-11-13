@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import ca.vastier.depense.daos.GenericDao;
+import ca.vastier.depense.persistence.daos.GenericDao;
 import ca.vastier.depense.exceptions.EntityNotFoundException;
 import ca.vastier.depense.services.GenericEntityService;
 import ca.vastier.depense.web.dto.AbstractEntity;

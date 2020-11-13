@@ -1,4 +1,4 @@
-package ca.vastier.depense.daos;
+package ca.vastier.depense.persistence.daos;
 
 import ca.vastier.depense.web.dto.ReceiptDto;
 import org.springframework.stereotype.Repository;

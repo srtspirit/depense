@@ -1,3 +1,4 @@
+DELETE FROM article;
 INSERT INTO article(id, name, parent_article_id)
 VALUES(615, 'books', null ),
 (618, 'books', null ),

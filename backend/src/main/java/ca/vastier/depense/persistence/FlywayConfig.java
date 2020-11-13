@@ -1,4 +1,4 @@
-package ca.vastier.depense.config;
+package ca.vastier.depense.persistence;
 
 import javax.sql.DataSource;
 
