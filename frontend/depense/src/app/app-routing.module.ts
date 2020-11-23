@@ -5,8 +5,10 @@ import {ArticleListComponent} from "../depense_module/components/article-list/ar
 import {NgModule} from "@angular/core";
 import {DepenseComponent} from "../depense_module/components/depense-component/depense.component";
 import {TestComponent} from "../test-module/test.component";
+import {LoginComponent} from "./components/login-component/login.component";
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent},
   { path: 'depense', component: DepenseComponent },
   { path: 'test', component: TestComponent}
 ];

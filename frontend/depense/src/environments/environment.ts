@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   url: 'noop',
-  other: 'someOtherProperty'
+  other: 'someOtherProperty',
+  loginUrl: 'noop'
 };
 
 /*
